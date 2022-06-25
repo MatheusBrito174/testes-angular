@@ -6,6 +6,10 @@ export class UniqueIdService {
   private numberOfGeneratedIds = 0;
 
   generateUniqueIdWithPrefix(prefix: string): string {
+    if (!this.prefixIsValid(prefix)) {
+      throw Error('Prefix is invalid.');
+    }
+
     const uniqueId = this.generateUniqueId();
 
     return `${prefix}-${uniqueId}`;
@@ -16,6 +20,15 @@ export class UniqueIdService {
   }
 
   private generateUniqueId(): string {
-    return uuidv4();
+    const id = uuidv4();
+    this.numberOfGeneratedIds++;
+
+    return id;
+  }
+
+  private prefixIsValid(prefix: string): boolean {
+    const validPrefixRegex = /^[A-Za-z]+[\w\-\:\.]*$/;
+
+    return prefix && validPrefixRegex.test(prefix);
   }
 }
