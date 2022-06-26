@@ -29,5 +29,11 @@ module.exports = function (config) {
     browsers: ["Chrome"],
     singleRun: false,
     restartOnFileChange: true,
+    customLaunchers: {
+      FirefoxSemCabeca: {
+        base: "Firefox",
+        flags: "-headless",
+      },
+    },
   });
 };
