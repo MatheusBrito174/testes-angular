@@ -8,7 +8,7 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./like-widget.component.scss'],
 })
 export class LikeWidgetComponent implements OnInit {
-  @Output() like = new EventEmitter<void>();
+  @Output() liked = new EventEmitter<void>();
   @Input() likes = 0;
   @Input() id = null;
   fonts = {
@@ -23,7 +23,7 @@ export class LikeWidgetComponent implements OnInit {
     }
   }
 
-  emitLike() {
-    this.like.emit();
+  emitLiked() {
+    this.liked.emit();
   }
 }
